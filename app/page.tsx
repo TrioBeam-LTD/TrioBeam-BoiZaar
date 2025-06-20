@@ -3,8 +3,8 @@ import React from 'react'
 
 const page = () => {
   return (
-    <div>
-      <Button variant={'ghost'} > button </Button>
+    <div>   
+      <Button variant={'ghost'} > button </Button>    
     </div>
   )
 }
