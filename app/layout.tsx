@@ -1,35 +1,48 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import {Inter} from "next/font/google"
 import "./globals.css";
+import { generateSEO, generateOrganizationStructuredData, generateWebsiteStructuredData } from "@/lib/seo"
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+const inter = Inter({ subsets: ["latin"] })
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-export const metadata: Metadata = {
-  title: "BoiZaar",
-  description: "It's a book buying and selling platfrom",
-};
-
+export const metadata: Metadata = generateSEO({
+  title: "বইবিক্রয়.কম - বাংলাদেশের সবচেয়ে বড় একাডেমিক বই মার্কেটপ্লেস",
+  description:
+    "পুরানো বই কিনুন ও বিক্রি করুন সহজেই। HSC, SSC, অনার্স, মাস্টার্স, মেডিকেল ও ইঞ্জিনিয়ারিং বই পাবেন সাশ্রয়ী দামে। বিনামূল্যে বই পোস্ট করুন।",
+  url: "https://boibikroy.com",
+})
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: {
+  children: React.ReactNode
+}) {
+  const organizationData = generateOrganizationStructuredData()
+  const websiteData = generateWebsiteStructuredData()
+
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        
-      >
-        {children}
-      </body>
+    <html lang="bn" dir="ltr">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationData),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(websiteData),
+          }}
+        />
+        <link rel="icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+        <link rel="manifest" href="/site.webmanifest" />
+        <meta name="theme-color" content="#2563eb" />
+        <meta name="msapplication-TileColor" content="#2563eb" />
+      </head>
+      <body className={inter.className}>{children}</body>
     </html>
-  );
+  )
 }
