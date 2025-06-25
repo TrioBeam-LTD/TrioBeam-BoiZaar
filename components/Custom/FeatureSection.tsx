@@ -29,7 +29,7 @@ function FeatureSection() {
         <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {
             featuredBooks.map((book, i)=>(
-                 <ProductCard book={book}>
+                 <ProductCard key={i} book={book}>
 
                  </ProductCard>
             ))
