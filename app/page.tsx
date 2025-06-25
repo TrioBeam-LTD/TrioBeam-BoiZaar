@@ -1,3 +1,4 @@
+
 import HomePageClient from "./HomePageClient"
 import { generateSEO, generateWebsiteStructuredData } from "@/lib/seo"
 
@@ -30,6 +31,7 @@ export default function HomePage() {
         }}
       />
       <HomePageClient />
+      
     </>
   )
 }
