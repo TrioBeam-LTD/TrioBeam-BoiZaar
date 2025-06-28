@@ -4,11 +4,11 @@ import Link from "next/link";
 import SectionTitle from "./SectionTitle";
 import { Button } from "../ui/button";
 import { ArrowRight } from "lucide-react";
-import { useBoo      kStore } from "@/lib/store";
+import { useBookStore } from "@/lib/store";
 import ProductCard from "./Card";
 
 function FeatureSection() {
-      const { books, featuredBooks } = useBookStore();
+  const { books, featuredBooks } = useBookStore();
   return (
     <section className="py-16 bg-gray-50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -24,16 +24,12 @@ function FeatureSection() {
             </Button>
           </Link>
         </div>
-        
+
         {/* card book */}
         <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {
-            featuredBooks.map((book, i)=>(
-                 <ProductCard key={i} book={book}>
-
-                 </ProductCard>
-            ))
-            }
+          {featuredBooks.map((book, i) => (
+            <ProductCard book={book}></ProductCard>
+          ))}
         </div>
       </div>
     </section>
