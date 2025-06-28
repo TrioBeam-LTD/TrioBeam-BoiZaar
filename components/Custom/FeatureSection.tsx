@@ -4,7 +4,7 @@ import Link from "next/link";
 import SectionTitle from "./SectionTitle";
 import { Button } from "../ui/button";
 import { ArrowRight } from "lucide-react";
-import { useBookStore } from "@/lib/store";
+import { useBoo      kStore } from "@/lib/store";
 import ProductCard from "./Card";
 
 function FeatureSection() {
