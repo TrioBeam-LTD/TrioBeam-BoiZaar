@@ -28,7 +28,7 @@ function ProductCard({ book }: ProductCardProps) {
       className="group"
     >
       <Card className="bg-white  p-0 border border-gray-200 shadow-sm hover:shadow-lg hover:border-blue-300 transition-all duration-300 overflow-hidden group-hover:scale-[1.02]">
-        <div className="relative lg:w-full w-32 flex-shrink-0">
+        <div className="relative  ">
           <img
             src={book.image || "/placeholder.svg?height=200&width=150"}
             alt={book.title}

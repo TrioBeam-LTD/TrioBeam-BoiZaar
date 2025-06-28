@@ -12,8 +12,8 @@ function RecentBook() {
   const { books, featuredBooks } = useBookStore();
 
   return (
-    <section className="py-16 bg-gray-50">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-12 ">
+      <div className="px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between mb-8">
           <div>
             <SectionTitle text="সাম্প্রতিক বই "></SectionTitle>
@@ -28,7 +28,7 @@ function RecentBook() {
         </div>
 
         {/* card book */}
-        <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {books.map((book, i) => (
             <ProductCard book={book}></ProductCard>
           ))}
