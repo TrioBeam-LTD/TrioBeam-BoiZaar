@@ -1,13 +1,13 @@
+import Footer from "@/components/Custom/Footer";
+import Navber from "@/components/Custom/Navber";
+import {
+  generateOrganizationStructuredData,
+  generateSEO,
+  generateWebsiteStructuredData,
+} from "@/lib/seo";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import {
-  generateSEO,
-  generateOrganizationStructuredData,
-  generateWebsiteStructuredData,
-} from "@/lib/seo";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -62,7 +62,12 @@ export default function RootLayout({
         <meta name="theme-color" content="#2563eb" />
         <meta name="msapplication-TileColor" content="#2563eb" />
       </head>
-      <body className={inter.className}>{children}</body>
+
+      <body className={inter.className}>
+        <Navber />
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }
