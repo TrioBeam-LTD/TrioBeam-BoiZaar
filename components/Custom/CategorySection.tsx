@@ -58,7 +58,7 @@ const categories = [
 
 function CategorySection() {
   return (
-    <section className="py-16 bg-white">
+    <section className="py-12 ">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-9">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">
@@ -66,7 +66,7 @@ function CategorySection() {
           </h2>
           <p className="text-gray-600">আপনার প্রয়োজনীয় বই খুঁজে নিন</p>
         </div>
-        <div className="grid sm:grid-clos-2 md:grid-cols-4 lg:grid-cols-6 gap-2 lg:gap-6">
+        <div className="grid sm:grid-clos-2 md:grid-cols-4 lg:grid-cols-3 gap-2 lg:gap-6">
           {categories.map((item, idx) => (
             <motion.div
               key={idx}
