@@ -2,7 +2,6 @@ import { generateSEO } from "@/lib/seo";
 import type { Metadata } from "next";
 import BookDetailPageclient from "./BookDetailPageClient";
 
-
 export async function generateMetadat({
   params,
 }: {
@@ -18,7 +17,7 @@ export async function generateMetadat({
     type: "product",
   });
 }
- 
+
 export default function BookDetailPage() {
-    return <BookDetailPageclient/>
+  return <BookDetailPageclient />;
 }

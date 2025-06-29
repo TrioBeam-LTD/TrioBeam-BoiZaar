@@ -14,9 +14,9 @@ function HomePageClient() {
       <div className=" sm:px-6 lg:px-6 py-12 lg:py-12">
         <div className="flex flex-col lg:flex-row-reverse gap-8 lg:gap-12">
           {/* Left Sidebar - All AdSense (Hidden on mobile) */}
-          <div className="hidden lg:block lg:w-80 xl:w-96 flex-shrink-0">
+          {/* <div className="hidden lg:block lg:w-80 xl:w-96 flex-shrink-0">
             <div className="sticky top-8 space-y-8">
-              {/* AdSense Banner 1 */}
+              
               <div className="group bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden transform hover:-translate-y-1">
                 <div className="bg-gradient-to-r from-blue-500 to-indigo-600 px-4 py-3">
                   <div className="flex items-center justify-center">
@@ -39,7 +39,7 @@ function HomePageClient() {
                   </div>
                 </div>
                 <div className="p-6 min-h-[300px] bg-gradient-to-br from-gray-50 to-blue-50 flex items-center justify-center relative overflow-hidden">
-                  {/* Decorative background elements */}
+                 
                   <div className="absolute top-0 right-0 w-32 h-32 bg-blue-100 rounded-full -translate-y-16 translate-x-16 opacity-30"></div>
                   <div className="absolute bottom-0 left-0 w-24 h-24 bg-indigo-100 rounded-full translate-y-12 -translate-x-12 opacity-40"></div>
 
@@ -67,7 +67,7 @@ function HomePageClient() {
                 </div>
               </div>
 
-              {/* AdSense Banner 2 */}
+             
               <div className="group bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden transform hover:-translate-y-1">
                 <div className="bg-gradient-to-r from-emerald-500 to-teal-600 px-4 py-3">
                   <div className="flex items-center justify-center">
@@ -90,7 +90,7 @@ function HomePageClient() {
                   </div>
                 </div>
                 <div className="p-6 min-h-[250px] bg-gradient-to-br from-gray-50 to-emerald-50 flex items-center justify-center relative overflow-hidden">
-                  {/* Decorative background elements */}
+               
                   <div className="absolute top-0 left-0 w-28 h-28 bg-emerald-100 rounded-full -translate-y-14 -translate-x-14 opacity-30"></div>
                   <div className="absolute bottom-0 right-0 w-20 h-20 bg-teal-100 rounded-full translate-y-10 translate-x-10 opacity-40"></div>
 
@@ -118,7 +118,6 @@ function HomePageClient() {
                 </div>
               </div>
 
-              {/* AdSense Banner 3 */}
               <div className="group bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden transform hover:-translate-y-1">
                 <div className="bg-gradient-to-r from-purple-500 to-pink-600 px-4 py-3">
                   <div className="flex items-center justify-center">
@@ -141,7 +140,7 @@ function HomePageClient() {
                   </div>
                 </div>
                 <div className="p-6 min-h-[300px] bg-gradient-to-br from-gray-50 to-purple-50 flex items-center justify-center relative overflow-hidden">
-                  {/* Decorative background elements */}
+            
                   <div className="absolute top-0 right-0 w-30 h-30 bg-purple-100 rounded-full -translate-y-15 translate-x-15 opacity-30"></div>
                   <div className="absolute bottom-0 left-0 w-22 h-22 bg-pink-100 rounded-full translate-y-11 -translate-x-11 opacity-40"></div>
 
@@ -169,7 +168,6 @@ function HomePageClient() {
                 </div>
               </div>
 
-              {/* Support Message */}
               <div className="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-xl p-6 shadow-lg border border-blue-200/50">
                 <div className="text-center">
                   <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center mx-auto mb-4 shadow-lg">
@@ -195,10 +193,10 @@ function HomePageClient() {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
 
           {/* Main Content Area */}
-          <div className="flex-1 bg-white rounded-4xl">
+          <div className="flex-1 container mx-auto bg-white rounded-4xl">
             <CategorySection />
 
             <FeatureSection />
