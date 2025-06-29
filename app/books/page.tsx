@@ -15,7 +15,7 @@ import { Slider } from "@/components/ui/slider";
 import { useBookStore } from "@/lib/store";
 import { motion } from "framer-motion";
 import { Grid, List, Search, SlidersHorizontal } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function BookPage() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -30,6 +30,18 @@ export default function BookPage() {
 
   const { books, filteredBooks, setFilters } = useBookStore();
 
+  useEffect(() => {
+    setFilters({
+      search: searchQuery,
+      class: selectedClass,
+      subject: selectedSubject,
+      district: selectedDistrict,
+      condition: selectedCondition,
+      priceRange,
+      sortBy
+    })
+  }, [searchQuery, selectedClass, selectedSubject, selectedDistrict, selectedCondition, priceRange, sortBy, setFilters])
+ 
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
