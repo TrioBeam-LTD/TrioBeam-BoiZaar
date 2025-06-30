@@ -1,5 +1,5 @@
 import CallToAction from "@/components/Custom/CallToAction";
-import CategorySection from "@/components/Custom/CategorySection";
+import CategorySlider from "@/components/Custom/CategorySlider";
 import FeatureSection from "@/components/Custom/FeatureSection";
 import HeroSection from "@/components/Custom/HeroSection";
 import RecentBook from "@/components/Custom/RecentBook";
@@ -197,7 +197,7 @@ function HomePageClient() {
 
           {/* Main Content Area */}
           <div className="flex-1 container mx-auto bg-white rounded-4xl">
-            <CategorySection />
+            <CategorySlider />
 
             <FeatureSection />
 
