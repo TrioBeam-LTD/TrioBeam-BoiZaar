@@ -1,7 +1,6 @@
 "use client";
 
 import ProductCard from "@/components/Custom/Card";
-import Navber from "@/components/Custom/Navber";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -38,15 +37,21 @@ export default function BookPage() {
       district: selectedDistrict,
       condition: selectedCondition,
       priceRange,
-      sortBy
-    })
-  }, [searchQuery, selectedClass, selectedSubject, selectedDistrict, selectedCondition, priceRange, sortBy, setFilters])
- 
+      sortBy,
+    });
+  }, [
+    searchQuery,
+    selectedClass,
+    selectedSubject,
+    selectedDistrict,
+    selectedCondition,
+    priceRange,
+    sortBy,
+    setFilters,
+  ]);
+
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <Navber />
-
       {/* Search & filter Section */}
       <section className="bg-white border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
@@ -109,7 +114,7 @@ export default function BookPage() {
           {showFilters && (
             <motion.div
               initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto", animationDelay: 0.5  }}
+              animate={{ opacity: 1, height: "auto", animationDelay: 0.5 }}
               exit={{ opacity: 0, height: 0 }}
               className="mt-6 p-6 bg-gray-50 rounded-lg border border-gray-200"
             >
