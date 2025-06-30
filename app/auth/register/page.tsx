@@ -12,8 +12,7 @@ import Link from "next/link";
 import { useState } from "react";
 
 export default function RegisterPage() {
-
-    const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
       <div className="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
@@ -28,9 +27,7 @@ export default function RegisterPage() {
             <div className="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center shadow-lg">
               <BookOpen className="w-7 h-7 text-white" />
             </div>
-            <span className="text-3xl font-bold text-gray-900">
-              বইবিক্রয়.কম
-            </span>
+            <span className="text-3xl font-bold text-gray-900">বইজার.কম</span>
           </div>
 
           <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight">
@@ -224,35 +221,54 @@ export default function RegisterPage() {
                     className="text-sm text-gray-700"
                   >
                     আমি
-                    <Link href="/terms" className="text-blue-600 hover:text-blue-700 underline">শর্তাবলী</Link>এবং <Link href="/privacy" className="text-blue-600 hover:text-blue-700 underline">গোপনীয়তা নীতি</Link> মেনে নিচ্ছি
+                    <Link
+                      href="/terms"
+                      className="text-blue-600 hover:text-blue-700 underline"
+                    >
+                      শর্তাবলী
+                    </Link>
+                    এবং{" "}
+                    <Link
+                      href="/privacy"
+                      className="text-blue-600 hover:text-blue-700 underline"
+                    >
+                      গোপনীয়তা নীতি
+                    </Link>{" "}
+                    মেনে নিচ্ছি
                   </Label>
                 </div>
                 {/* error will be added */}
 
                 {/* Submit Button */}
                 <Button
-                    type="submit"
-                    className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 font-medium"
+                  type="submit"
+                  className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 font-medium"
                 >
-                    {isLoading ? (
-                        <div className="flex items-center">
-                            <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin mr-2">
-                                অ্যাকাউন্ট তৈরি করা হচ্ছে...
-                            </div>
-                        </div>
-                    ) : (
-                        <div className="flex items-center">
-                            <User className="w-5 h-5 mr-2" />
-                            অ্যাকাউন্ট তৈরি করুন
-                            <ArrowRight className="w-5 h-5 ml-2" />
-                        </div>
-                    )}
+                  {isLoading ? (
+                    <div className="flex items-center">
+                      <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin mr-2">
+                        অ্যাকাউন্ট তৈরি করা হচ্ছে...
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="flex items-center">
+                      <User className="w-5 h-5 mr-2" />
+                      অ্যাকাউন্ট তৈরি করুন
+                      <ArrowRight className="w-5 h-5 ml-2" />
+                    </div>
+                  )}
                 </Button>
               </form>
 
               <div className="text-center">
                 <p className="text-gray-600">
-                    ইতিমধ্যে অ্যাকাউন্ট আছে? <Link href="/auth/login" className="text-blue-600 hover:text-blue-700 font-medium">লগইন করুন</Link>
+                  ইতিমধ্যে অ্যাকাউন্ট আছে?{" "}
+                  <Link
+                    href="/auth/login"
+                    className="text-blue-600 hover:text-blue-700 font-medium"
+                  >
+                    লগইন করুন
+                  </Link>
                 </p>
               </div>
             </CardContent>

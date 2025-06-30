@@ -22,7 +22,7 @@ function Navber() {
                 <BookOpen className="w-5 h-5 text-white" />
               </div>
               <span className="text-lg sm:text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors duration-200">
-                <span className="hidden sm:inline">বইবিক্রয়.কম</span>
+                <span className="hidden sm:inline">বইজার.কম</span>
                 <span className="sm:hidden">বইবিক্রয়</span>
               </span>
             </Link>

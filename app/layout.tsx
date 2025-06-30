@@ -12,7 +12,7 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = generateSEO({
-  title: "বইবিক্রয়.কম - বাংলাদেশের সবচেয়ে বড় একাডেমিক বই মার্কেটপ্লেস",
+  title: "বইজার.কম - বাংলাদেশের সবচেয়ে বড় একাডেমিক বই মার্কেটপ্লেস",
   description:
     "পুরানো বই কিনুন ও বিক্রি করুন সহজেই। HSC, SSC, অনার্স, মাস্টার্স, মেডিকেল ও ইঞ্জিনিয়ারিং বই পাবেন সাশ্রয়ী দামে। বিনামূল্যে বই পোস্ট করুন।",
   url: "https://boibikroy.com",

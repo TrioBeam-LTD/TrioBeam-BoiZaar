@@ -10,8 +10,8 @@ export async function generateMetadat({
   const bookId = params.id;
 
   return generateSEO({
-    title: `বইয়ের বিস্তারিত - বইবিক্রয়.কম`,
-    description: `বইয়ের সম্পূর্ণ তথ্য, দাম, অবস্থা এবং বিক্রেতার যোগাযোগ। নিরাপদে বই কিনুন বইবিক্রয়.কম থেকে।`,
+    title: `বইয়ের বিস্তারিত - বইজার.কম`,
+    description: `বইয়ের সম্পূর্ণ তথ্য, দাম, অবস্থা এবং বিক্রেতার যোগাযোগ। নিরাপদে বই কিনুন বইজার.কম থেকে।`,
     keywords: ["বই বিস্তারিত", "বই কিনুন", "বই তথ্য", "বিক্রেতা যোগাযোগ"],
     url: `https://boibikroy.com/books/${bookId}`,
     type: "product",

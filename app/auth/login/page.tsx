@@ -23,7 +23,6 @@ const loginSchema = z.object({
 type LoginForm = z.infer<typeof loginSchema>;
 
 export default function LoginPage() {
-
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -38,12 +37,12 @@ export default function LoginPage() {
 
   const onSubmit = async (data: LoginForm) => {
     setIsLoading(true);
-    await new Promise((resolve) => setTimeout(resolve, 2000))
+    await new Promise((resolve) => setTimeout(resolve, 2000));
     console.log("Login Data: ", data);
-    
+
     setIsLoading(false);
-  }
- 
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
       <div className="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -58,9 +57,7 @@ export default function LoginPage() {
             <div className="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center shadow-lg">
               <BookOpen className="w-7 h-7 text-white" />
             </div>
-            <span className="text-3xl font-bold text-gray-900">
-              বইবিক্রয়.কম
-            </span>
+            <span className="text-3xl font-bold text-gray-900">বইজার.কম</span>
           </div>
 
           <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight">
@@ -109,7 +106,6 @@ export default function LoginPage() {
 
             <CardContent className="space-y-6">
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-                
                 <div className="space-y-2">
                   <Label
                     htmlFor="email"
@@ -150,58 +146,77 @@ export default function LoginPage() {
                       className="pl-10 border-gray-300 focus:border-blue-500"
                       {...register("password")}
                     />
-                    <button 
+                    <button
                       type="button"
                       className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
                       onClick={() => setShowPassword(!showPassword)}
                     >
-                      {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                      {showPassword ? (
+                        <EyeOff className="w-5 h-5" />
+                      ) : (
+                        <Eye className="w-5 h-5" />
+                      )}
                     </button>
-                    {errors.password && <p className="text-sm text-red-600">{errors.password.message}</p>}
-                  </div>                  
+                    {errors.password && (
+                      <p className="text-sm text-red-600">
+                        {errors.password.message}
+                      </p>
+                    )}
+                  </div>
                 </div>
 
                 <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-2">
-                      <Checkbox
-                        id="rememberMe"
-                        onCheckedChange={(checked) => setValue("rememberMe", checked as boolean)}
-                       />
-                       <Label htmlFor="rememberMe" className="text-sm text-gray-700">
-                        আমাকে মনে রাখুন
-                      </Label>
-                    </div>
-                    <Link href="/auth/forgot-password" className="text-sm text-blue-600 hover:text-blue-700">
-                      পাসওয়ার্ড ভুলে গেছেন?
-                    </Link>
+                  <div className="flex items-center space-x-2">
+                    <Checkbox
+                      id="rememberMe"
+                      onCheckedChange={(checked) =>
+                        setValue("rememberMe", checked as boolean)
+                      }
+                    />
+                    <Label
+                      htmlFor="rememberMe"
+                      className="text-sm text-gray-700"
+                    >
+                      আমাকে মনে রাখুন
+                    </Label>
                   </div>
-                  
-                  <Button 
-                    type="submit"
-                    disabled={isLoading}
-                    className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 font-medium"
+                  <Link
+                    href="/auth/forgot-password"
+                    className="text-sm text-blue-600 hover:text-blue-700"
                   >
-                    {isLoading ? (
-                      <div className="flex items-center">
-                        <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin mr-2">
-                          লগইন করা হচ্ছে...
-                        </div>
+                    পাসওয়ার্ড ভুলে গেছেন?
+                  </Link>
+                </div>
+
+                <Button
+                  type="submit"
+                  disabled={isLoading}
+                  className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 font-medium"
+                >
+                  {isLoading ? (
+                    <div className="flex items-center">
+                      <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin mr-2">
+                        লগইন করা হচ্ছে...
                       </div>
-                    ) : (
-                      <div className="flex items-center"> 
-                        লগইন করুন
-                        <ArrowRight className="w-5 h-5 ml-2" />
-                      </div>
-                    )}
-                  </Button>
+                    </div>
+                  ) : (
+                    <div className="flex items-center">
+                      লগইন করুন
+                      <ArrowRight className="w-5 h-5 ml-2" />
+                    </div>
+                  )}
+                </Button>
               </form>
 
               <div className="text-center">
                 <p className="text-gray-600">
-                    নতুন ব্যবহারকারী?{" "}
-                    <Link href="/auth/register" className="text-blue-600 hover:text-blue-700 font-medium">
-                      রেজিস্টার করুন
-                    </Link>
+                  নতুন ব্যবহারকারী?{" "}
+                  <Link
+                    href="/auth/register"
+                    className="text-blue-600 hover:text-blue-700 font-medium"
+                  >
+                    রেজিস্টার করুন
+                  </Link>
                 </p>
               </div>
             </CardContent>

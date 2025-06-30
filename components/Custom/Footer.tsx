@@ -1,6 +1,5 @@
 import { BookOpen } from "lucide-react";
 import Link from "next/link";
-import React from "react";
 
 function Footer() {
   return (
@@ -12,7 +11,7 @@ function Footer() {
               <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
                 <BookOpen className="w-5 h-5 text-white" />
               </div>
-              <span className="text-xl font-bold">বইবিক্রয়.কম</span>
+              <span className="text-xl font-bold">বইজার.কম</span>
             </div>
             <p className="text-gray-400">
               বাংলাদেশের সবচেয়ে বিশ্বস্ত একাডেমিক বই মার্কেটপ্লেস
@@ -72,7 +71,7 @@ function Footer() {
         </div>
 
         <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-          <p>&copy; ২০২৪ বইবিক্রয়.কম। সকল অধিকার সংরক্ষিত।</p>
+          <p>&copy; ২০২৪ বইজার.কম। সকল অধিকার সংরক্ষিত।</p>
         </div>
       </div>
     </footer>

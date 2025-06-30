@@ -1,22 +1,22 @@
-import type { Metadata } from "next"
+import type { Metadata } from "next";
 
 interface SEOProps {
-  title?: string
-  description?: string
-  keywords?: string[]
-  image?: string
-  url?: string
-  type?: "website" | "article" | "product"
-  publishedTime?: string
-  modifiedTime?: string
-  author?: string
-  price?: number
-  currency?: string
-  availability?: "in_stock" | "out_of_stock"
+  title?: string;
+  description?: string;
+  keywords?: string[];
+  image?: string;
+  url?: string;
+  type?: "website" | "article" | "product";
+  publishedTime?: string;
+  modifiedTime?: string;
+  author?: string;
+  price?: number;
+  currency?: string;
+  availability?: "in_stock" | "out_of_stock";
 }
 
 export function generateSEO({
-  title = "বইবিক্রয়.কম - বাংলাদেশের সবচেয়ে বড় একাডেমিক বই মার্কেটপ্লেস",
+  title = "বইজার.কম - বাংলাদেশের সবচেয়ে বড় একাডেমিক বই মার্কেটপ্লেস",
   description = "পুরানো বই কিনুন ও বিক্রি করুন সহজেই। HSC, SSC, অনার্স, মাস্টার্স, মেডিকেল ও ইঞ্জিনিয়ারিং বই পাবেন সাশ্রয়ী দামে। বিনামূল্যে বই পোস্ট করুন।",
   keywords = [
     "বই কিনুন",
@@ -46,8 +46,8 @@ export function generateSEO({
   currency = "BDT",
   availability = "in_stock",
 }: SEOProps = {}): Metadata {
-  const siteName = "বইবিক্রয়.কম"
-  const fullTitle = title.includes(siteName) ? title : `${title} | ${siteName}`
+  const siteName = "বইজার.কম";
+  const fullTitle = title.includes(siteName) ? title : `${title} | ${siteName}`;
 
   const metadata: Metadata = {
     title: fullTitle,
@@ -111,7 +111,7 @@ export function generateSEO({
       yandex: "your-yandex-verification-code",
       yahoo: "your-yahoo-verification-code",
     },
-  }
+  };
 
   // Add product-specific metadata for book pages
   if (type === "product" && price) {
@@ -121,10 +121,10 @@ export function generateSEO({
       "product:availability": availability,
       "product:condition": "used",
       "product:category": "Books",
-    }
+    };
   }
 
-  return metadata
+  return metadata;
 }
 
 // Structured data generators
@@ -145,7 +145,10 @@ export function generateBookStructuredData(book: any) {
       price: book.price,
       priceCurrency: "BDT",
       availability: "https://schema.org/InStock",
-      condition: `https://schema.org/${book.condition.replace(" ", "")}Condition`,
+      condition: `https://schema.org/${book.condition.replace(
+        " ",
+        ""
+      )}Condition`,
       seller: {
         "@type": "Person",
         name: book.sellerName,
@@ -157,14 +160,14 @@ export function generateBookStructuredData(book: any) {
     numberOfPages: book.pages || undefined,
     publisher: book.publisher || undefined,
     datePublished: book.publishDate || undefined,
-  }
+  };
 }
 
 export function generateOrganizationStructuredData() {
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
-    name: "বইবিক্রয়.কম",
+    name: "বইজার.কম",
     alternateName: "BoiBikroy.com",
     url: "https://boibikroy.com",
     logo: "https://boibikroy.com/logo.png",
@@ -188,15 +191,19 @@ export function generateOrganizationStructuredData() {
       contactType: "customer service",
       availableLanguage: ["Bengali", "English"],
     },
-    sameAs: ["https://facebook.com/boibikroy", "https://twitter.com/boibikroy", "https://instagram.com/boibikroy"],
-  }
+    sameAs: [
+      "https://facebook.com/boibikroy",
+      "https://twitter.com/boibikroy",
+      "https://instagram.com/boibikroy",
+    ],
+  };
 }
 
 export function generateWebsiteStructuredData() {
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: "বইবিক্রয়.কম",
+    name: "বইজার.কম",
     url: "https://boibikroy.com",
     description: "বাংলাদেশের সবচেয়ে বড় একাডেমিক বই মার্কেটপ্লেস",
     inLanguage: "bn",
@@ -205,10 +212,12 @@ export function generateWebsiteStructuredData() {
       target: "https://boibikroy.com/books?search={search_term_string}",
       "query-input": "required name=search_term_string",
     },
-  }
+  };
 }
 
-export function generateBreadcrumbStructuredData(items: Array<{ name: string; url: string }>) {
+export function generateBreadcrumbStructuredData(
+  items: Array<{ name: string; url: string }>
+) {
   return {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -218,5 +227,5 @@ export function generateBreadcrumbStructuredData(items: Array<{ name: string; ur
       name: item.name,
       item: item.url,
     })),
-  }
+  };
 }

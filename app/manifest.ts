@@ -1,9 +1,9 @@
-import type { MetadataRoute } from "next"
+import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "বইবিক্রয়.কম - বাংলাদেশের সবচেয়ে বড় একাডেমিক বই মার্কেটপ্লেস",
-    short_name: "বইবিক্রয়.কম",
+    name: "বইজার.কম - বাংলাদেশের সবচেয়ে বড় একাডেমিক বই মার্কেটপ্লেস",
+    short_name: "বইজার.কম",
     description: "পুরানো বই কিনুন ও বিক্রি করুন সহজেই",
     start_url: "/",
     display: "standalone",
@@ -26,5 +26,5 @@ export default function manifest(): MetadataRoute.Manifest {
         type: "image/png",
       },
     ],
-  }
+  };
 }

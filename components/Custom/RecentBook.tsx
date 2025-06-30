@@ -20,7 +20,7 @@ function RecentBook() {
             <p className="text-gray-600">নতুন যোগ হওয়া বই সমূহ</p>
           </div>
           <Link href="/books?freadtured=true">
-            <Button variant={"outline"}>
+            <Button variant={"outline"} className="bg-transparent">
               সব দেখুন
               <ArrowRight className="w-4 h-4 ml-2" />
             </Button>
@@ -28,7 +28,7 @@ function RecentBook() {
         </div>
 
         {/* card book */}
-        <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {books.map((book, i) => (
             <ProductCard book={book}></ProductCard>
           ))}
