@@ -27,7 +27,7 @@ export default function BooksPageclient() {
   const [selectedCondition, setSelectedCondition] = useState("all");
   const [sortBy, setSortBy] = useState("newest");
 
-  const { books, filteredBooks, setFilters } = useBookStore();
+  const { filteredBooks, setFilters } = useBookStore();
 
   useEffect(() => {
     setFilters({
@@ -277,7 +277,7 @@ export default function BooksPageclient() {
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {filteredBooks.map((book, index) => (
+              {filteredBooks.map((book) => (
                 <ProductCard key={book.id} book={book} />
               ))}
             </div>

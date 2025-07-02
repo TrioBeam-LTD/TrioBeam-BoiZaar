@@ -275,8 +275,8 @@ function PostBookForm() {
           break;
         }
       }
-    } catch (error: any) {
-      setLocationError(error.message || "লোকেশন খুঁজে পেতে সমস্যা হয়েছে");
+    } catch (error) {
+      setLocationError(error instanceof Error ? error.message : "লোকেশন খুঁজে পেতে সমস্যা হয়েছে");
     } finally {
       setIsLoadingLocation(false);
     }

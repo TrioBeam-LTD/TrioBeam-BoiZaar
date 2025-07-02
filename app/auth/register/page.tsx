@@ -12,7 +12,7 @@ import Link from "next/link";
 import { useState } from "react";
 
 export default function RegisterPage() {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading] = useState(false);
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
       <div className="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">

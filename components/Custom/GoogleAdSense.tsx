@@ -22,7 +22,6 @@ function GoogleAdSense({
   className = "",
   title = "স্পন্সর্ড",
   showDecorations = true,
-  size = "medium",
   variant = "yellow",
 }: GoogleAdSenseProps) {
   useEffect(() => {

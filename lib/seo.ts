@@ -39,8 +39,6 @@ export function generateSEO({
   image = "/og-image.png",
   url = "https://boibikroy.com",
   type = "website",
-  publishedTime,
-  modifiedTime,
   author,
   price,
   currency = "BDT",

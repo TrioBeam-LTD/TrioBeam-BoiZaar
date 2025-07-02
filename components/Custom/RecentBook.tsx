@@ -9,7 +9,7 @@ import ProductCard from "./Card";
 import { useBookStore } from "@/lib/store";
 
 function RecentBook() {
-  const { books, featuredBooks } = useBookStore();
+  const { books } = useBookStore();
 
   return (
     <section className="py-12 ">
@@ -30,7 +30,7 @@ function RecentBook() {
         {/* card book */}
         <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {books.map((book, i) => (
-            <ProductCard book={book}></ProductCard>
+            <ProductCard key={i} book={book}></ProductCard>
           ))}
         </div>
       </div>
