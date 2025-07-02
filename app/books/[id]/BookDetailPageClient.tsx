@@ -1,74 +1,64 @@
 "use client";
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
-import {
-  generateBookStructuredData,
-  generateBreadcrumbStructuredData,
-} from "@/lib/seo";
-import { useBookStore } from "@/lib/store";
-import {
-  ArrowLeft,
-  BookOpen,
-  Building,
-  Eye,
-  GraduationCap,
-  Heart,
-  Mail,
-  MapPin,
-  MessageCircle,
-  Phone,
-  Share2,
-  User,
-} from "lucide-react";
-import Link from "next/link";
-import { useParams } from "next/navigation";
-import { useEffect, useState } from "react";
+type book = {
+  id: string;
+  title: string;
+  author: string;
+  image: string;
+  price: number;
+  originalPrice?: number;
+  condition: "New" | "Like New" | "Good" | "Fair" | "Poor";
+  edition: string;
+  subject: string;
+  class: string;
+  institution: string;
+  department?: string;
+  semester?: string;
+  district: string;
+  division: string;
+};
 
 export default function BookDetailPageclient() {
-  const params = useParams();
-  const { books } = useBookStore();
-  const [book, setBook] = useState(null);
-  const [isLinked, setIsLinked] = useState(false);
+  // const params = useParams();
+  // const { books } = useBookStore();
+  // const [book, setBook] = useState(null);
+  // const [isLinked, setIsLinked] = useState(false);
 
-  useEffect(() => {
-    const foundBook = books.find((b) => b.id === params.id);
-    setBook(foundBook);
-  }, [params.id, books]);
+  // useEffect(() => {
+  //   const foundBook = books.find((b) => b.id === params.id);
+  //   setBook(foundBook : book);
+  // }, [params.id, books]);
 
-  if (!book) {
-    return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-center">
-          <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <BookOpen className="w-8 h-8 text-gray-400" />
-          </div>
-          <h2 className="text-2xl font-bold text-gray-900 mb-2">
-            বই পাওয়া যায়নি
-          </h2>
-          <p className="text-gray-600 mb-6">
-            এই বইটি আর উপলব্ধ নেই বা সরিয়ে ফেলা হয়েছে।
-          </p>
-          <Link href="/books">
-            <Button className="bg-blue-600 hover: bg-blue-700">
-              সব বই দেখুন
-            </Button>
-          </Link>
-        </div>
-      </div>
-    );
-  }
+  // if (!book) {
+  //   return (
+  //     <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+  //       <div className="text-center">
+  //         <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+  //           <BookOpen className="w-8 h-8 text-gray-400" />
+  //         </div>
+  //         <h2 className="text-2xl font-bold text-gray-900 mb-2">
+  //           বই পাওয়া যায়নি
+  //         </h2>
+  //         <p className="text-gray-600 mb-6">
+  //           এই বইটি আর উপলব্ধ নেই বা সরিয়ে ফেলা হয়েছে।
+  //         </p>
+  //         <Link href="/books">
+  //           <Button className="bg-blue-600 hover: bg-blue-700">
+  //             সব বই দেখুন
+  //           </Button>
+  //         </Link>
+  //       </div>
+  //     </div>
+  //   );
+  // }
 
-  const relatedBooks = books
-    .filter((b) => b.id !== book.id && b.subject === book.subject)
-    .slice(0, 4);
+  // const relatedBooks = books
+  //   .filter((b) => b.id !== book.id && b.subject === book.subject)
+  //   .slice(0, 4);
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {book && (
+      {/* {book && (
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -95,7 +85,7 @@ export default function BookDetailPageclient() {
         />
       )}
       {/* Breadcrumb */}
-      <div className="bg-white border-b">
+      {/* <div className="bg-white border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between">
             <Link href="/books">
@@ -136,7 +126,6 @@ export default function BookDetailPageclient() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Book Image */}
           <div className="lg:col-span-1">
             <div className="sticky top-8">
               <Card className="overflow-hidden border border-gray-200 shadow-sm">
@@ -197,8 +186,6 @@ export default function BookDetailPageclient() {
               </Card>
             </div>
           </div>
-
-          {/* Book Details */}
           <div className="lg:col-span-2 space-y-6">
             <Card className="border border-gray-200 shadow-sm">
               <CardContent className="p-6">
@@ -288,7 +275,6 @@ export default function BookDetailPageclient() {
               </CardContent>
             </Card>
 
-            {/* Seller Info */}
             <Card className="border border-gray-200 shadow-sm">
               <CardContent className="p-6">
                 <h3 className="text-xl font-semibold mb-4 flex items-center text-gray-900">
@@ -296,55 +282,65 @@ export default function BookDetailPageclient() {
                   বিক্রেতার তথ্য
                 </h3>
                 <div className="flex items-center gap-4">
-                    <Avatar className="w-16 h-16">
-                      <AvatarImage src='/placeholder.svg?height=64&width=64' />
-                      <AvatarFallback className="bg-blue-100 text-blue-600 font-semibold text-lg">
-                        {book.sellerName.charAt(0)}
-                      </AvatarFallback>
-                    </Avatar>
-                    <div className="flex-1">
-                      <h4 className="font-semibold text-lg text-gray-900 mb-2">{book.sellerName}</h4>
-                      <div className="space-y-1">
-                        <div className="flex items-center text-gray-600">
-                          <Phone className="w-4 h-4 mr-2" />
-                          {book.contactPhone}
-                        </div>
-                        <div className="flex items-center text-gray-600">
-                          <Mail className="w-4 h-4 mr-2" />
-                          {book.contactEmail}
-                        </div>
-                        <div className="flex items-center text-gray-600">
+                  <Avatar className="w-16 h-16">
+                    <AvatarImage src="/placeholder.svg?height=64&width=64" />
+                    <AvatarFallback className="bg-blue-100 text-blue-600 font-semibold text-lg">
+                      {book.sellerName.charAt(0)}
+                    </AvatarFallback>
+                  </Avatar>
+                  <div className="flex-1">
+                    <h4 className="font-semibold text-lg text-gray-900 mb-2">
+                      {book.sellerName}
+                    </h4>
+                    <div className="space-y-1">
+                      <div className="flex items-center text-gray-600">
+                        <Phone className="w-4 h-4 mr-2" />
+                        {book.contactPhone}
+                      </div>
+                      <div className="flex items-center text-gray-600">
+                        <Mail className="w-4 h-4 mr-2" />
+                        {book.contactEmail}
+                      </div>
+                      <div className="flex items-center text-gray-600">
                         <MapPin className="w-4 h-4 mr-2" />
                         {book.district}, {book.division}
-                        </div>
                       </div>
                     </div>
-                    <div className="flex flex-col gap-2">
-                      <Button className="bg-green-600 hover:bg-green-700">
-                        <Phone className="w-4 h-4 mr-2" />
-                        কল করুন
-                      </Button>
-                      <Button className="bg-blue-600 hover:bg-blue-700">
-                        <MessageCircle className="w-4 h-4 mr-2" />
-                        চ্যাট করুন
-                      </Button>
-                    </div>
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    <Button className="bg-green-600 hover:bg-green-700">
+                      <Phone className="w-4 h-4 mr-2" />
+                      কল করুন
+                    </Button>
+                    <Button className="bg-blue-600 hover:bg-blue-700">
+                      <MessageCircle className="w-4 h-4 mr-2" />
+                      চ্যাট করুন
+                    </Button>
+                  </div>
                 </div>
               </CardContent>
             </Card>
 
-            {/* Related Books */}
+
             {relatedBooks.length > 0 && (
               <Card className="border border-gray-200 shadow-sm">
                 <CardContent className="p-6">
-                  <h3 className="text-xl font-semibold mb-4 text-gray-900">একই বিষয়ের অন্যান্য বই</h3>
+                  <h3 className="text-xl font-semibold mb-4 text-gray-900">
+                    একই বিষয়ের অন্যান্য বই
+                  </h3>
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                     {relatedBooks.map((relatedBook) => (
-                      <Link key={relatedBook.id} href={`/books/${relatedBook.id}`}>
+                      <Link
+                        key={relatedBook.id}
+                        href={`/books/${relatedBook.id}`}
+                      >
                         <div className="group cursor-pointer">
                           <div className="relative overflow-hidden rounded-lg mb-3">
                             <img
-                              src={relatedBook.image || "/placeholder.svg?height=150&width=120"}
+                              src={
+                                relatedBook.image ||
+                                "/placeholder.svg?height=150&width=120"
+                              }
                               alt={relatedBook.title}
                               className="w-full h-32 object-cover group-hover:scale-105 transition-transform duration-200"
                             />
@@ -352,7 +348,9 @@ export default function BookDetailPageclient() {
                           <h4 className="font-medium text-sm text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2 mb-1">
                             {relatedBook.title}
                           </h4>
-                          <p className="text-green-600 font-semibold">৳{relatedBook.price}</p>
+                          <p className="text-green-600 font-semibold">
+                            ৳{relatedBook.price}
+                          </p>
                         </div>
                       </Link>
                     ))}
@@ -362,7 +360,8 @@ export default function BookDetailPageclient() {
             )}
           </div>
         </div>
-      </div>
+      </div>  */}
     </div>
   );
 }
+113128;
