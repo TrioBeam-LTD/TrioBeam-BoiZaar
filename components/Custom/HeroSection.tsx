@@ -4,6 +4,7 @@ import CarouselWithMultipleSlides from "@/components/customized/carousel/carouse
 import { motion } from "framer-motion";
 import { Search } from "lucide-react";
 import Link from "next/link";
+import { useState } from "react";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import {
@@ -15,12 +16,41 @@ import {
 } from "../ui/select";
 
 function HeroSection() {
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedClass, setSelectedClass] = useState<string | undefined>(
+    undefined
+  );
+  const [selectedDistrict, setSelectedDistrict] = useState<string | undefined>(
+    undefined
+  );
+
+  const classOptions = [
+    { value: "all", label: "সব শ্রেণি" },
+    { value: "SSC", label: "SSC" },
+    { value: "HSC", label: "HSC" },
+    { value: "Honours", label: "অনার্স" },
+    { value: "Masters", label: "মাস্টার্স" },
+    { value: "MBBS", label: "MBBS" },
+    { value: "Engineering", label: "ইঞ্জিনিয়ারিং" },
+  ];
+
+  const districtOptions = [
+    { value: "all", label: "সব জেলা" },
+    { value: "Dhaka", label: "ঢাকা" },
+    { value: "Chittagong", label: "চট্টগ্রাম" },
+    { value: "Sylhet", label: "সিলেট" },
+    { value: "Rajshahi", label: "রাজশাহী" },
+    { value: "Khulna", label: "খুলনা" },
+    { value: "Barisal", label: "বরিশাল" },
+  ];
+
   const statsData = [
     { number: "১০,০০০+", label: "বই বিজ্ঞাপন" },
     { number: "৫,০০০+", label: "সক্রিয় ব্যবহারকারী" },
     { number: "৬৪", label: "জেলায় সেবা" },
     { number: "৯৮%", label: "সন্তুষ্ট ক্রেতা" },
   ];
+
   return (
     <section
       className="text-white py-24 relative before:absolute before:inset-0 before:bg-black before:opacity-50 before:z-0"
@@ -66,43 +96,49 @@ function HeroSection() {
                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                   <Input
                     placeholder="বই খুঁজুন..."
-                    // value={searchQuery}
-                    // onChange={(e) => setSearchQuery(e.target.value)}
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
                     className="pl-10 border-gray-300"
                   />
                 </div>
+                <div>
+                  <Select
+                    value={selectedClass}
+                    onValueChange={(e) => setSelectedClass(e)}
+                  >
+                    <SelectTrigger>
+                      <SelectValue placeholder="শ্রেণি নির্বাচন করুন" />
+                    </SelectTrigger>
+                    <SelectContent className=" bg-white text-black">
+                      {classOptions.map((items) => (
+                        <SelectItem key={items.value} value={items.value}>
+                          {items.label}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
 
-                {/* <Select value={selectedClass} onValueChange={setSelectedClass}> */}
-                <Select>
-                  <SelectTrigger>
-                    <SelectValue placeholder="শ্রেণি নির্বাচন করুন" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="all">সব শ্রেণি</SelectItem>
-                    <SelectItem value="SSC">SSC</SelectItem>
-                    <SelectItem value="HSC">HSC</SelectItem>
-                    <SelectItem value="Honours">অনার্স</SelectItem>
-                    <SelectItem value="Masters">মাস্টার্স</SelectItem>
-                    <SelectItem value="MBBS">MBBS</SelectItem>
-                    <SelectItem value="Engineering">ইঞ্জিনিয়ারিং</SelectItem>
-                  </SelectContent>
-                </Select>
-
-                <Select>
-                  {/* <Select value={selectedDistrict} onValueChange={setSelectedDistrict}> */}
-                  <SelectTrigger>
-                    <SelectValue placeholder="জেলা নির্বাচন করুন" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="all">সব জেলা</SelectItem>
-                    <SelectItem value="Dhaka">ঢাকা</SelectItem>
-                    <SelectItem value="Chittagong">চট্টগ্রাম</SelectItem>
-                    <SelectItem value="Sylhet">সিলেট</SelectItem>
-                    <SelectItem value="Rajshahi">রাজশাহী</SelectItem>
-                    <SelectItem value="Khulna">খুলনা</SelectItem>
-                    <SelectItem value="Barisal">বরিশাল</SelectItem>
-                  </SelectContent>
-                </Select>
+                <div>
+                  <Select
+                    value={selectedDistrict}
+                    onValueChange={(e) => {
+                      setSelectedDistrict(e);
+                      console.log("selected district: ", e);
+                    }}
+                  >
+                    <SelectTrigger>
+                      <SelectValue placeholder="জেলা নির্বাচন করুন" />
+                    </SelectTrigger>
+                    <SelectContent className=" text-black bg-white">
+                      {districtOptions.map((items) => (
+                        <SelectItem key={items.value} value={items.value}>
+                          {items.label}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
 
                 <Link href="/books">
                   <Button className="w-full bg-blue-600 hover:bg-blue-700">
