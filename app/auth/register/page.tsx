@@ -6,13 +6,66 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { registerBenefits } from "@/lib/utils";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { motion } from "framer-motion";
-import { ArrowRight, BookOpen, Lock, Mail, MapPin, User } from "lucide-react";
+import {
+  ArrowRight,
+  BookOpen,
+  Eye,
+  EyeOff,
+  Lock,
+  Mail,
+  MapPin,
+  User,
+} from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
+import { Controller, useForm } from "react-hook-form";
+
+import { z } from "zod";
+
+const registerSchema = z
+  .object({
+    firstName: z.string().min(2, { message: "নামের প্রথম অংশ আবশ্যক" }),
+    lastName: z.string().min(2, { message: "নামের শেষ অংশ আবশ্যক" }),
+    email: z.string().email({ message: "সঠিক ইমেইল ঠিকানা দিন" }),
+    phone: z.string().min(11, { message: "সঠিক ফোন নম্বর দিন" }).max(14),
+    district: z.string().min(1, { message: "আপনার জেলার নাম আবশ্যক" }),
+    password: z
+      .string()
+      .min(6, { message: "পাসওয়ার্ড কমপক্ষে ৬ অক্ষরের হতে হবে" }),
+    confirmPassword: z
+      .string()
+      .min(6, { message: "পাসওয়ার্ড কমপক্ষে ৬ অক্ষরের হতে হবে" }),
+    agreeToTerms: z.boolean().refine((val) => val === true, {
+      message: "শর্তাবলীতে সম্মতি প্রদান করতে হবে",
+    }),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "পাসওয়ার্ড দুটি মিলছে না",
+    path: ["confirmPassword"],
+  });
+
+type registerFormData = z.infer<typeof registerSchema>;
 
 export default function RegisterPage() {
-  const [isLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setConfirmShowPassword] = useState(false);
+
+  const {
+    register,
+    handleSubmit,
+    control,
+    formState: { errors, isSubmitting },
+  } = useForm<registerFormData>({
+    resolver: zodResolver(registerSchema),
+  });
+
+  const handleRegister = (data: registerFormData) => {
+    console.log("Form Data: ", data);
+  };
+
+
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
       <div className="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
@@ -71,7 +124,10 @@ export default function RegisterPage() {
             </CardHeader>
 
             <CardContent className=" space-y-6">
-              <form className="space-y-2">
+              <form
+                onSubmit={handleSubmit(handleRegister)}
+                className="space-y-2"
+              >
                 {/* Name Fields */}
                 <div className="grid grid-cols-2 gap-4">
                   <div className=" space-y-2">
@@ -85,8 +141,13 @@ export default function RegisterPage() {
                       id="firstName"
                       placeholder="যেমন: মোহাম্মদ"
                       className=" border-gray-300 focus:border-blue-500"
+                      {...register("firstName")}
                     />
-                    {/* error will be added */}
+                    {errors.firstName && (
+                      <p className="text-red-500 text-sm mt-1">
+                        {errors.firstName.message}
+                      </p>
+                    )}
                   </div>
 
                   <div className="space-y-2">
@@ -100,8 +161,13 @@ export default function RegisterPage() {
                       id="lastName"
                       placeholder="যেমন: রহমান"
                       className="border-gray-300 focus:border-blue-500"
+                      {...register("lastName")}
                     />
-                    {/* errors will be added */}
+                    {errors.lastName && (
+                      <p className="text-sm mt-1 text-red-500">
+                        {errors.lastName.message}
+                      </p>
+                    )}
                   </div>
                 </div>
 
@@ -120,9 +186,15 @@ export default function RegisterPage() {
                       type="email"
                       placeholder="আপনার ইমেইল ঠিকানা"
                       className="pl-10 border-gray-300 focus:border-blue-500"
+                      {...register("email")}
                     />
                   </div>
-                  {/* error will be added */}
+                  {errors.email && (
+                    <p className="text-sm  text-red-500 mt-1">
+                      {" "}
+                      {errors.email.message}
+                    </p>
+                  )}
                 </div>
 
                 {/* Phone */}
@@ -137,8 +209,14 @@ export default function RegisterPage() {
                     id="phone"
                     placeholder="০১৭১২৩৪৫৬৭৮"
                     className="border-gray-300 focus:border-blue-500"
+                    {...register("phone")}
                   />
-                  {/* errors will be added */}
+                  {errors.phone && (
+                    <p className="text-sm  text-red-500 mt-1">
+                      {" "}
+                      {errors.phone.message}
+                    </p>
+                  )}
                 </div>
 
                 {/* District */}
@@ -155,9 +233,15 @@ export default function RegisterPage() {
                       id="district"
                       placeholder="আপনার জেলার নাম"
                       className="pl-10 border-gray-300 focus:border-blue-500"
+                      {...register("district")}
                     />
                   </div>
-                  {/* error will be added */}
+                  {errors.district && (
+                    <p className="text-sm text-red-500 mt-1">
+                      {" "}
+                      {errors.district.message}
+                    </p>
+                  )}
                 </div>
 
                 {/* Password Fields */}
@@ -173,18 +257,28 @@ export default function RegisterPage() {
                       <Lock className=" absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                       <Input
                         id="password"
-                        type="password"
+                        type={showPassword ? "text" : "password"}
                         placeholder="আপনার পাসওয়ার্ড"
                         className=" pl-10 pr-10 border-gray-300 focus:border-blue-500"
+                        {...register("password")}
                       />
                       <button
                         type="button"
-                        className=" absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                        className=" absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 cursor-pointer"
+                        onClick={() => setShowPassword(!showPassword)}
                       >
-                        {/* Eye will be added with useState for password */}
+                        {showPassword ? (
+                          <Eye className="size-5" />
+                        ) : (
+                          <EyeOff className="size-5" />
+                        )}
                       </button>
                     </div>
-                    {/* error will be added */}
+                    {errors.password && (
+                      <p className="text-sm text-red-500 mt-1">
+                        {errors.password.message}
+                      </p>
+                    )}
                   </div>
 
                   <div className="space-y-2">
@@ -198,24 +292,45 @@ export default function RegisterPage() {
                       <Lock className=" absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                       <Input
                         id="confirmPassword"
-                        type="password"
+                        type={showConfirmPassword ? "text" : "password"}
                         placeholder="পাসওয়ার্ড আবার লিখুন"
                         className="pl-10 pr-10 border-gray-300 focus:border-blue-500"
+                        {...register("confirmPassword")}
                       />
                       <button
                         type="button"
-                        className=" absolute right-3 top-1/2 transform  -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                        className=" absolute right-3 top-1/2 transform  -translate-y-1/2 text-gray-400 hover:text-gray-600 cursor-pointer"
+                        onClick={() =>
+                          setConfirmShowPassword(!showConfirmPassword)
+                        }
                       >
+                        {showConfirmPassword ? (
+                          <Eye className="size-5" />
+                        ) : (
+                          <EyeOff className="size-5" />
+                        )}
+
                         {/* Eye will be added  */}
                       </button>
                     </div>
-                    {/* error will be added */}
+                    {errors.confirmPassword && (
+                      <p className="text-red-500 text-sm mt-1">
+                        {errors.confirmPassword.message}
+                      </p>
+                    )}
                   </div>
                 </div>
 
                 {/* Terms Agreement */}
                 <div className="flex items-center space-x-2">
-                  <Checkbox id="agreeToTerms" />
+                  <Controller
+                    name="agreeToTerms"
+                    control={control}
+                    render={({field}) => (
+
+                      <Checkbox id="agreeToTerms" checked={field.value} onCheckedChange={field.onChange} />
+                    )}
+                  />
                   <Label
                     htmlFor="agreeToTerms"
                     className="text-sm text-gray-700"
@@ -236,15 +351,20 @@ export default function RegisterPage() {
                     </Link>{" "}
                     মেনে নিচ্ছি
                   </Label>
+                  {errors.agreeToTerms && (
+                    <p className="text-sm text-red-500 mt-1">
+                      {" "}
+                      {errors.agreeToTerms.message}
+                    </p>
+                  )}
                 </div>
-                {/* error will be added */}
 
                 {/* Submit Button */}
                 <Button
                   type="submit"
-                  className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 font-medium"
+                  className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 font-medium cursor-pointer"
                 >
-                  {isLoading ? (
+                  {isSubmitting ? (
                     <div className="flex items-center">
                       <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin mr-2">
                         অ্যাকাউন্ট তৈরি করা হচ্ছে...
